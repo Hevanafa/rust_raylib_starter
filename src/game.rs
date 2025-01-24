@@ -1,12 +1,15 @@
+use std::io;
+use std::io::Write;
 use raylib::prelude::*;
 
 const WW: i32 = 640;
 const WH: i32 = 360;
 
 pub fn main() {
-	let (mut rl, thread) = raylib::init().build();
+	println!("Starting raylib-rs...");
+	io::stdout().flush().expect("Unable to flush!");
 
-	print!("Starting raylib-rs...");
+	let (mut rl, thread) = raylib::init().build();
 
 	rl.set_window_size(WW, WH);
 
@@ -15,7 +18,11 @@ pub fn main() {
 		.load_texture(&thread, "assets/images/raylib-rust_256x256.png")
 		.expect("Unable to load raylib-rust_256x256.png!");
 
+	let raylib_icon = Image::load_image("assets/images/window_icon.png")
+		.expect("Unable to load window_icon.png!");
+	rl.set_window_icon(&raylib_icon);
 	rl.set_window_title(&thread, "Raylib + Rust Starter");
+	
 	rl.set_target_fps(60);
 
 	let mut t: i32 = 0;
