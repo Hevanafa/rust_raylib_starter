@@ -1,4 +1,5 @@
+.\vars.ps1
 cargo build --release
 
 # assign the icon
-rcedit .\target\release\rust_raylib_starter.exe --set-icon .\assets\icon\raylib.ico
+rcedit .\target\release\$global:APP_NAME.exe --set-icon .\assets\icon\raylib.ico
